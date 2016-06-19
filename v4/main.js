@@ -8,7 +8,9 @@ myApp.controller('CalculatorController', ['$scope', function($scope) {
     $scope.operationName = '';
 
     $scope.typeNumber = function(number) {
-        $scope.displayInput += number;
+        if ($scope.displayInput.length < 10) {
+            $scope.displayInput += number;
+        }
     }
 
     $scope.reset = function() {
@@ -16,33 +18,30 @@ myApp.controller('CalculatorController', ['$scope', function($scope) {
     }
 
     $scope.operation = function(name) {
-        console.log('operation');
         $scope.previous = parseFloat($scope.displayInput);
         $scope.reset();
         $scope.operationName = name;
     }
 
     $scope.calculate = function() {
-        console.log('calculate');
         var current = parseFloat($scope.displayInput);
-        console.log('calculate2');
         var result;
         switch ($scope.operationName) {
             case 'add':
-                result = previous + current;
+                result = $scope.previous + current;
                 break;
             case 'substract':
-                result = previous - current;
+                result = $scope.previous - current;
                 break;
             case 'multiply':
-                result = previous * current;
+                result = $scope.previous * current;
                 break;
             case 'divide':
-                result = previous / current;
+                result = $scope.previous / current;
                 break;
             default:
                 result = 'unsupported operation';
         }
-        $scope.displayInput = result;
+        $scope.displayInput = result.toString();
     }
 }]);
