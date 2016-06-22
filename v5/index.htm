@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<title>Calculator</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+	</head>
+    <body>
+        <div ng-app="calculatorApp" ng-controller="CalculatorController">
+            <table border="4">
+                <tr>
+                    <td>
+                        <input type="text" class="screen" readonly ng-model="displayInput" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="1" ng-click="typeNumber(1)" />
+                        <input type="button" value="2" ng-click="typeNumber(2)" />
+                        <input type="button" value="3" ng-click="typeNumber(3)" />
+                        <input type="button" value="+" ng-click="operation('add')" />
+                        <br/>
+                        <input type="button" value="4" ng-click="typeNumber(4)" />
+                        <input type="button" value="5" ng-click="typeNumber(5)" />
+                        <input type="button" value="6" ng-click="typeNumber(6)" />
+                        <input type="button" value="-" ng-click="operation('substract')" />
+                        <br/>
+                        <input type="button" value="7" ng-click="typeNumber(7)" />
+                        <input type="button" value="8" ng-click="typeNumber(8)" />
+                        <input type="button" value="9" ng-click="typeNumber(9)" />
+                        <input type="button" value="x" ng-click="operation('multiply')" />
+                        <br/>
+                        <input type="button" value="c" ng-click="reset()" />
+                        <input type="button" value="0" ng-click="typeNumber(0)" />
+                        <input type="button" value="=" ng-click="calculate()" />
+                        <input type="button" value="/" ng-click="operation('divide')" />
+                        <br/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
