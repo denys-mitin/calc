@@ -1,49 +1,65 @@
 
-var  = angular.module('calculatorApp',[]);
+var calculatorApp = angular.module('calculatorApp',[]);
 
-calculatorApp.controller('CalculatorController', ['$scope', function($scope) {
-    $scope.displayInput = '';
-    $scope.keys = [ [ {name: '1', func: "typeNumber"} ] ];
-    $scope.previous = '';
-    $scope.operationName = '';
+calculatorApp.constant('displayInputSize', 10);
 
-    $scope.typeNumber = function(number) {
-        if ($scope.displayInput.length < 10) {
-            $scope.displayInput += number;
-        }
-        console.log('$scope: ' + $scope);
-        console.log('this' + this);
+calculatorApp.controller('CalculatorController', ['$scope', 'keys', 'displayInputSize', function(scope, keys, displayInputSize) {
+    scope.keys = keys;
+    scope.displayInputSize = displayInputSize;
+    scope.displayInput = '';
+    scope.previous = '';
+    scope.operationKey = '';
+
+    scope.reset = function() {
+        scope.displayInput = '';
     }
 
-    $scope.reset = function() {
-        $scope.displayInput = '';
+    scope.operation = function(key) {
+        scope.previous = parseFloat(scope.displayInput);
+        scope.reset();
+        scope.operationKey = key;
     }
 
-    $scope.operation = function(name) {
-        $scope.previous = parseFloat($scope.displayInput);
-        $scope.reset();
-        $scope.operationName = name;
-    }
-
-    $scope.calculate = function() {
-        var current = parseFloat($scope.displayInput);
+    scope.calculate = function() {
+        var current = parseFloat(scope.displayInput);
         var result;
-        switch ($scope.operationName) {
-            case 'add':
-                result = $scope.previous + current;
+        switch (scope.operationKey) {
+            case '+':
+                result = scope.previous + current;
                 break;
-            case 'substract':
-                result = $scope.previous - current;
+            case '-':
+                result = scope.previous - current;
                 break;
-            case 'multiply':
-                result = $scope.previous * current;
+            case 'x':
+                result = scope.previous * current;
                 break;
-            case 'divide':
-                result = $scope.previous / current;
+            case '/':
+                result = scope.previous / current;
                 break;
             default:
                 result = 'unsupported operation';
         }
-        $scope.displayInput = result.toString();
+        scope.displayInput = result.toString();
+    }
+
+    scope.keyFunc = function(key) {
+        console.log('key: ' + key);
+        if (isNaN(key)) {
+            switch (key) {
+                case 'c':
+                    scope.reset();
+                    break;
+                case '=':
+                    scope.calculate();
+                    break;
+                default:
+                    scope.operation(key);
+            }
+        } else {
+            if (scope.displayInput.length < scope.displayInputSize) {
+                scope.displayInput += key;
+            }
+        }
+        
     }
 }]);

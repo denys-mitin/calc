@@ -5,4 +5,4 @@ Training "JavaScript/NodeJS/Angular"
 * v2: the same but CSS added for better look
 * v3: CSS replaced by Less, removed eval, added main.js, used grunt with less, uglify and watch
 * v4: the same with Angular
-* v5: used ng-repeat, create value service buttons.js, used concat
+* v5: used ng-repeat, create value service keys.js, used concat
