@@ -1,8 +1,25 @@
 <div ng-app="calculatorApp">
     <div ng-controller="CalculatorController" class="calc">
         <input type="text" class="screen" readonly ng-model="displayInput" />
-        <div ng-repeat="key in keys">
-            <input type="button" value="{{key}}" ng-click="keyFunc(key)"/>
-        </div>
+
+        <digit-key key="key1"></digit-key>
+        <digit-key key="key2"></digit-key>
+        <digit-key key="key3"></digit-key>
+        <func-key key="keyPlus"></func-key>
+
+        <digit-key key="key4"></digit-key>
+        <digit-key key="key5"></digit-key>
+        <digit-key key="key6"></digit-key>
+        <func-key key="keyMinus"></func-key>
+
+        <digit-key key="key7"></digit-key>
+        <digit-key key="key8"></digit-key>
+        <digit-key key="key9"></digit-key>
+        <func-key key="keyMultiply"></func-key>
+
+        <func-key key="keyC"></func-key>
+        <digit-key key="key0"></digit-key>
+        <func-key key="keyEquals"></func-key>
+        <func-key key="keyDivide"></func-key>
     </div>
 </div>
