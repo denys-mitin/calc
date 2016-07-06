@@ -34,6 +34,10 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
+  },
+  '/calc': {
+    view: 'calc',
+    locals: { layout: null }
   }
 
   /***************************************************************************
