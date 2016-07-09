@@ -8,22 +8,16 @@ calculatorApp.controller('CalculatorController', ['$scope', 'displayInputSize', 
     scope.displayInputSize = displayInputSize;
     scope.displayInput = '';
     scope.previous = '';
-    scope.operationKey = '';
+    scope.operationLabel = '';
 
     scope.reset = function() {
         scope.displayInput = '';
     }
 
-    scope.operation = function(key) {
-        scope.previous = parseFloat(scope.displayInput);
-        scope.reset();
-        scope.operationKey = key;
-    }
-
     scope.calculate = function() {
         var current = parseFloat(scope.displayInput);
         var result;
-        switch (scope.operationKey) {
+        switch (scope.operationLabel) {
             case '+':
                 result = scope.previous + current;
                 break;
@@ -42,42 +36,26 @@ calculatorApp.controller('CalculatorController', ['$scope', 'displayInputSize', 
         scope.displayInput = result.toString();
     }
     
-    scope.digitKeyPressed = function(digit) {
-        console.log('digit: ' + digit);
+    scope.digit = function(label) {
+        console.log('digit: ' + label);
         if (scope.displayInput.length < scope.displayInputSize) {
-            scope.displayInput += digit;
+            scope.displayInput += label;
         }
     }
 
-    scope.funcKeyPressed = function(func) {
-        console.log('func: ' + func);
-        switch (func) {
+    scope.operation = function(label) {
+        console.log('func: ' + label);
+        switch (label) {
             case 'c':
                 scope.reset();
                 break;
             case '=':
                 scope.calculate();
                 break;
-            default:
-                scope.operation(func);
+            default: // operation key pressed
+                scope.previous = parseFloat(scope.displayInput);
+                scope.reset();
+                scope.operationLabel = label;
         }
     }
-
-    scope.key1 = {label: '1', func: scope.digitKeyPressed};
-    scope.key2 = {label: '2', func: scope.digitKeyPressed};
-    scope.key3 = {label: '3', func: scope.digitKeyPressed};
-    scope.key4 = {label: '4', func: scope.digitKeyPressed};
-    scope.key5 = {label: '5', func: scope.digitKeyPressed};
-    scope.key6 = {label: '6', func: scope.digitKeyPressed};
-    scope.key7 = {label: '7', func: scope.digitKeyPressed};
-    scope.key8 = {label: '8', func: scope.digitKeyPressed};
-    scope.key9 = {label: '9', func: scope.digitKeyPressed};
-    scope.key0 = {label: '0', func: scope.digitKeyPressed};
-
-    scope.keyPlus = {label: '+', func: scope.funcKeyPressed};
-    scope.keyMinus = {label: '-', func: scope.funcKeyPressed};
-    scope.keyMultiply = {label: '*', func: scope.funcKeyPressed};
-    scope.keyDivide = {label: '/', func: scope.funcKeyPressed};
-    scope.keyEquals = {label: '=', func: scope.funcKeyPressed};
-    scope.keyC = {label: 'c', func: scope.funcKeyPressed};
 }]);

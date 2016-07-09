@@ -1,20 +1,11 @@
 
-calculatorApp.directive('digitKey', function() {
+calculatorApp.directive('key', function() {
     return {
         restrict: 'AE',
         scope: {
-            key: '=key'
+            label: '@',
+            func: '&'
         },
-        template: '<input type="button" value="{{key.label}}" ng-click="key.func(key.label)" />'
-    };
-});
-
-calculatorApp.directive('funcKey', function() {
-    return {
-        restrict: 'AE',
-        scope: {
-            key: '=key'
-        },
-        template: '<input type="button" value="{{key.label}}" ng-click="key.func(key.label)" />'
+        template: '<input type="button" value="{{label}}" ng-click="func({label: label})" />'
     };
 });

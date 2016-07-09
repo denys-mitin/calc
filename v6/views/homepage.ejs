@@ -2,24 +2,24 @@
     <div ng-controller="CalculatorController" class="calc">
         <input type="text" class="screen" readonly ng-model="displayInput" />
 
-        <digit-key key="key1"></digit-key>
-        <digit-key key="key2"></digit-key>
-        <digit-key key="key3"></digit-key>
-        <func-key key="keyPlus"></func-key>
+        <key label="1" func="digit(label)"></key>
+        <key label="2" func="digit(label)"></key>
+        <key label="3" func="digit(label)"></key>
+        <key label="+" func="operation(label)"></key>
 
-        <digit-key key="key4"></digit-key>
-        <digit-key key="key5"></digit-key>
-        <digit-key key="key6"></digit-key>
-        <func-key key="keyMinus"></func-key>
+        <key label="4" func="digit(label)"></key>
+        <key label="5" func="digit(label)"></key>
+        <key label="6" func="digit(label)"></key>
+        <key label="-" func="operation(label)"></key>
 
-        <digit-key key="key7"></digit-key>
-        <digit-key key="key8"></digit-key>
-        <digit-key key="key9"></digit-key>
-        <func-key key="keyMultiply"></func-key>
+        <key label="7" func="digit(label)"></key>
+        <key label="8" func="digit(label)"></key>
+        <key label="9" func="digit(label)"></key>
+        <key label="*" func="operation(label)"></key>
 
-        <func-key key="keyC"></func-key>
-        <digit-key key="key0"></digit-key>
-        <func-key key="keyEquals"></func-key>
-        <func-key key="keyDivide"></func-key>
+        <key label="c" func="operation(label)"></key>
+        <key label="0" func="digit(label)"></key>
+        <key label="=" func="operation(label)"></key>
+        <key label="/" func="operation(label)"></key>
     </div>
 </div>
